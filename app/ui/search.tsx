@@ -28,16 +28,17 @@ export default function Search({ placeholder }: { placeholder: string }) {
 
         replace(`${pathname}?${params.toString()}`);
     }
+    // TODO: Add clear all button
 
     return (
-        <div className="w-full mx-6 my-4">
+        <div className="my-4">
             <form onSubmit={handleSubmit} className=''>
 
-                <div className='flex justify-center gap-2'>
+                <div className='flex gap-2'>
                     <label htmlFor="search" className="sr-only">Search</label>
                     <input
                         name='query'
-                        className="w-full rounded-sm border border-gray-300 focus:outline-2 px-3 py-2 text-base placeholder:text-gray-500 focus:text-gray-900"
+                        className="flex-1 rounded-sm border border-gray-300 focus:outline-2 px-3 py-2 text-base placeholder:text-gray-500 focus:text-gray-900"
                         placeholder={placeholder}
                         defaultValue={searchParams.get('query')?.toString()}
                     />
