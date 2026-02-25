@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
     "@huggingface/inference": "^4.13.12",
     "@pinecone-database/pinecone": "^7.1.0",
     "@supabase/supabase-js": "^2.97.0",
