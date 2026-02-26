@@ -1,12 +1,14 @@
 import os
 import pathlib
 from argparse import ArgumentParser
-from typing import Any
 
 import pandas as pd
+from dotenv import load_dotenv
 from pinecone import Pinecone
 from sentence_transformers import SentenceTransformer
 from supabase import Client, create_client
+
+load_dotenv()
 
 sp_url: str = os.environ.get("SUPABASE_URL")
 sp_key: str = os.environ.get("SUPABASE_KEY")
@@ -36,7 +38,7 @@ def process_row(row: pd.Series) -> dict[str, dict[str, str | list] | list]:
             "class_title": row["class_title"],
             "description": row["description"],
             "prerequisite": prereq,
-            "level": row["level"] if pd.notna(row["level"]) else "None",
+            "level": str(row["level"]).lower() if pd.notna(row["level"]) else "none",
             "series": series_list,
             "format": format,
         },
