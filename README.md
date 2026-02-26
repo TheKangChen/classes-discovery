@@ -8,6 +8,7 @@ A "Discovery Page" demo built for NYPL TechConnect. This project showcases a **H
 
 - **URL-Driven State**: Syncs search query and filters with the URL using `searchParams` for deep-linking and browser history support.
 - **Server-Side Orchestration**: Leveraged Server Components to execute vector and database queries, minimizing client-side JS.
+- **Recommendation Engine**: Built a content-based recommendation system using vector similarity to suggest related classes.
 - **Responsive Layout**: Created a responsive grid-based filter menu and horizontal card system using different CSS media queries.
 - **Accessible Hit Targets**: Used the "absolute-overlay" pattern to make entire cards clickable.
 

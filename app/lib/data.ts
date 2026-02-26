@@ -70,6 +70,13 @@ export async function getDiscoveryResult(
     }
 }
 
+/**
+ * Content-based filtering.
+ * @param classId The ID of a class
+ * @returns A promise resolving to an array 5 of objects containing class ID and title.
+ * @example
+ * const results = await getRecommendations("some-course-id");
+ */
 export async function getRecommendations(classId: string): Promise<{
     id: string;
     class_title: string;
