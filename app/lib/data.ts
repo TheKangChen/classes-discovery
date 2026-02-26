@@ -7,10 +7,11 @@ import { hf, pc, supabase } from '@/app/lib/db';
  * Executes a hybrid discovery search by combining semantic vector retrieval with relational metadata filtering.
  * @param query The natural language search string.
  * @param selectedLevels An array of proficiency levels to filter by (ex. ['Beginner', 'Advanced']).
+ * @param selectedFormats An array of class formats to filter by.
  * @param selectedSeries An array of curriculum series tags to filter by.
  * @returns A promise resolving to an array of class objects sorted by semantic relevance.
  * @example
- * const results = await getDiscoveryResults("python basics", ["Beginner"], ["Technology"]);
+ * const results = await getDiscoveryResults("python basics", ["Beginner"], ["Workshop"], ["Technology"]);
  */
 export async function getDiscoveryResult(
     query: string,
@@ -18,9 +19,6 @@ export async function getDiscoveryResult(
     selectedFormats: string[],
     selectedSeries: string[]
 ): Promise<ClassResult[]> {
-    console.log(selectedLevels);
-    console.log(selectedFormats);
-    console.log(selectedSeries);
     try {
         // Semantic search
         if (query) {
@@ -67,7 +65,43 @@ export async function getDiscoveryResult(
             return filteredItems;
         }
     } catch (error) {
-        console.log("Search Error:", error);
+        console.error("Search Error:", error);
+        return [];
+    }
+}
+
+export async function getRecommendations(classId: string): Promise<{
+    id: string;
+    class_title: string;
+}[]> {
+    try {
+        const index = pc.index(process.env.PINECONE_INDEX!, process.env.PINECONE_INDEX_HOST!);
+        const fetchResult = await index.fetch({ ids: [classId] });
+        const currentVector = fetchResult.records[classId]?.values;
+
+        if (!currentVector) return [];
+
+        const queryResults = await index.query({
+            vector: currentVector,
+            topK: 6,
+            includeMetadata: false
+        });
+
+        const recommendedIds = queryResults.matches
+            .map(m => m.id)
+            .filter(id => id !== classId)
+            .slice(0, 5)
+
+        const { data, error } = await supabase
+            .from('classes')
+            .select('id, class_title')
+            .in('id', recommendedIds);
+
+        if (error) throw error;
+
+        return data || [];
+    } catch (error) {
+        console.error()
         return [];
     }
 }
