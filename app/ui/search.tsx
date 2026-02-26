@@ -66,7 +66,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
                             <h4 className="font-bold text-sm text-gray-900 uppercase border-b border-gray-200 pb-1">Level</h4>
                             <div className="flex flex-col gap-1.5">
                                 {LEVELS.map(level => (
-                                    <label key={level} className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer capitalize">
+                                    <label key={level} className="flex items-center gap-2 text-xs text-gray-700 cursor-default capitalize">
                                         <input
                                             type="checkbox"
                                             name="level"
@@ -85,7 +85,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
                             <h4 className="font-bold text-sm text-gray-900 uppercase border-b border-gray-200 pb-1">Format</h4>
                             <div className="flex flex-col gap-1.5">
                                 {FORMATS.map(format => (
-                                    <label key={format} className="flex items-center gap-2 text-xs text-gray-700 cursor-pointer capitalize">
+                                    <label key={format} className="flex items-center gap-2 text-xs text-gray-700 cursor-default capitalize">
                                         <input
                                             type="checkbox"
                                             name="format"
@@ -104,7 +104,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
                             <h4 className="font-bold text-sm text-gray-900 uppercase border-b border-gray-200 pb-1">Series</h4>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 max-h-60 overflow-y-auto pr-2">
                                 {SERIES.map(item => (
-                                    <label key={item} className="flex items-center gap-2 text-xs text-gray-600 cursor-pointer hover:text-blue-600 transition-colors">
+                                    <label key={item} className="flex items-center gap-2 text-xs text-gray-600 cursor-default hover:text-blue-600 transition-colors">
                                         <input
                                             type="checkbox"
                                             name="series"
