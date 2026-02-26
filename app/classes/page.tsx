@@ -1,3 +1,5 @@
-export default function Page() {
-    return <h1>Class Detail Page</h1>;
+import { redirect } from "next/navigation";
+
+export default function ClassesPage() {
+    redirect('/');
 }
