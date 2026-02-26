@@ -10,7 +10,7 @@ export function Card({ title, description, level }: { title: string; description
     return (
         <div className="relative group flex flex-col gap-1 px-4 py-6 rounded-sm border-b border-gray-200 hover:bg-slate-50 transition-colors">
 
-            <Link href={href} className="absolute inset-0 z-0" aria-hidden="true">
+            <Link href={href} className="absolute inset-0 z-10" aria-hidden="true">
                 <span className="sr-only">View {title}</span>
             </Link>
 
@@ -22,7 +22,7 @@ export function Card({ title, description, level }: { title: string; description
 
 
             <div className="mt-1">
-                <button className="text-xs text-gray-500 font-bold group-hover:text-blue-600 underline">
+                <button tabIndex={-1} className="text-xs text-gray-500 font-bold group-hover:text-blue-600 underline">
                     View Course Details
                 </button>
             </div>
