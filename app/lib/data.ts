@@ -1,17 +1,7 @@
 'use server';
 
-import { createClient } from "@supabase/supabase-js";
-import { InferenceClient } from "@huggingface/inference";
-import { Pinecone } from '@pinecone-database/pinecone';
-import { ClassResult } from "@/app/lib/definitions";
-
-
-const hf = new InferenceClient(process.env.HF_TOKEN!);
-const pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
-const supabase = createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { ClassResult } from '@/app/lib/definitions';
+import { hf, pc, supabase } from '@/app/lib/db';
 
 /**
  * Executes a hybrid discovery search by combining semantic vector retrieval with relational metadata filtering.
