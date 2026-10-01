@@ -35,7 +35,7 @@ export default async function ClassPage({ params }: { params: Promise<{ slug: st
                     <span className='text-gray-700 truncate cursor-default'>{classData.class_title}</span>
                 </div>
                 <Link
-                    href={`https://www.nypl.org/techconnect?keyword=${decodedTitle}`}
+                    href={`https://www.nypl.org/techconnect?keywords=${decodedTitle}`}
                     target='_blank'
                     className='flex items-center text-sm text-blue-500 font-semibold'
                 >
